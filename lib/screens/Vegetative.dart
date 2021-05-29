@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-// Components
-import '../components/appBar.dart';
+// Widgets
+import 'package:erbanova/Widgets/AppBar.dart';
 
-class Fioritura extends StatelessWidget {
+class Vegetative extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ErbanovaAppBarText('Fase di fioritura'),
+      appBar: ErbanovaAppBarText('Fase Vegetativa'),
       body: Container(
         color: Colors.lightGreen[200],
       ),

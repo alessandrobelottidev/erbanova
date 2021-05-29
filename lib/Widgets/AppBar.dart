@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class ErbanovaAppBarImage extends StatelessWidget
     implements PreferredSizeWidget {
   final AppBar appBar = AppBar();
-  final String titleWidget;
+  final String imageTitle;
 
-  ErbanovaAppBarImage(this.titleWidget);
+  ErbanovaAppBarImage(this.imageTitle);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Image(
-        image: AssetImage(titleWidget),
+        image: AssetImage(imageTitle),
         height: 74.0,
       ),
       centerTitle: true,
@@ -27,14 +27,14 @@ class ErbanovaAppBarImage extends StatelessWidget
 class ErbanovaAppBarText extends StatelessWidget
     implements PreferredSizeWidget {
   final AppBar appBar = AppBar();
-  final String titleWidget;
+  final String titleAppBar;
 
-  ErbanovaAppBarText(this.titleWidget);
+  ErbanovaAppBarText(this.titleAppBar);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(titleWidget),
+      title: Text(titleAppBar),
       centerTitle: true,
       backgroundColor: Colors.black,
       brightness: Brightness.dark,

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-// Components
-import '../components/menuButton.dart';
-import '../components/appBar.dart';
+// Widgets
+import 'package:erbanova/Widgets/AppBar.dart';
+import 'package:erbanova/Widgets/MenuButton.dart';
 
 // Screens
-import './lottoColtivazione.dart';
-import './germinazione.dart';
-import './vegetativa.dart';
-import './fioritura.dart';
-import './essicatura.dart';
-import './fineRaccolto.dart';
+import 'package:erbanova/Screens/Blossom.dart';
+import 'package:erbanova/Screens/CultivationLot.dart';
+import 'package:erbanova/Screens/Drying.dart';
+import 'package:erbanova/Screens/EndOfHarvest.dart';
+import 'package:erbanova/Screens/Germination.dart';
+import 'package:erbanova/Screens/Vegetative.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -29,24 +29,28 @@ class MyApp extends StatelessWidget {
                 Row(
                   children: [
                     MenuButton(
-                        'Cambia lotto di coltivazione', LottoColtivazione()),
+                        text: 'Cambia lotto di coltivazione',
+                        nextTab: CultivationLot()),
                   ],
                 ),
                 Row(
                   children: [
-                    MenuButton('Fase di germinazione', Germinazione()),
-                    MenuButton('Fase Vegetativa', Vegetativa()),
+                    MenuButton(
+                        text: 'Fase di germinazione', nextTab: Germination()),
+                    MenuButton(text: 'Fase Vegetativa', nextTab: Vegetative()),
                   ],
                 ),
                 Row(
                   children: [
-                    MenuButton('Fase di fioritura', Fioritura()),
-                    MenuButton('Fase di essicatura', Essicatura()),
+                    MenuButton(text: 'Fase di fioritura', nextTab: Blossom()),
+                    MenuButton(text: 'Fase di essicatura', nextTab: Drying()),
                   ],
                 ),
                 Row(
                   children: [
-                    MenuButton('Report di fine raccolto', FineRaccolto()),
+                    MenuButton(
+                        text: 'Report di fine raccolto',
+                        nextTab: EndOfHarvest()),
                   ],
                 ),
               ],

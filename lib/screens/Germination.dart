@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-// Components
-import '../components/appBar.dart';
+// Widgets
+import 'package:erbanova/Widgets/AppBar.dart';
 
-class Germinazione extends StatelessWidget {
+class Germination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

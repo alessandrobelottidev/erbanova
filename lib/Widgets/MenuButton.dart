@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
-  MenuButton(this.buttonText, this.nextTab);
+  MenuButton({required this.text, required this.nextTab});
 
-  final buttonText;
-  StatelessWidget nextTab;
+  final String text;
+  final StatelessWidget nextTab;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MenuButton extends StatelessWidget {
                 context, MaterialPageRoute(builder: (context) => nextTab));
           },
           child: Text(
-            buttonText,
+            text,
             textAlign: TextAlign.center,
           ),
           style: TextButton.styleFrom(

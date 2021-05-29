@@ -62,11 +62,11 @@ flutter:
   fonts:
     - family: Overlock
       fonts:
-        - asset: fonts/Overlock/Overlock-Regular.ttf
+        - asset: assets/fonts/Overlock/Overlock-Regular.ttf
           weight: 400
-        - asset: fonts/Overlock/Overlock-Bold.ttf
+        - asset: assets/fonts/Overlock/Overlock-Bold.ttf
           weight: 700
-        - asset: fonts/Overlock/Overlock-Black.ttf
+        - asset: assets/fonts/Overlock/Overlock-Black.ttf
           weight: 900
   #
   # For details regarding fonts from package dependencies,

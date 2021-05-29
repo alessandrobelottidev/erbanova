@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-// Components
-import '../components/appBar.dart';
+// Widgets
+import 'package:erbanova/Widgets/AppBar.dart';
 
-class Essicatura extends StatelessWidget {
+class CultivationLot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ErbanovaAppBarText('Fase di essicatura'),
+      appBar: ErbanovaAppBarText('Cambia lotto di coltivazione'),
       body: Container(
         color: Colors.lightGreen[200],
       ),
