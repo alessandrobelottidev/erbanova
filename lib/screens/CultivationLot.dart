@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 // Widgets
 import 'package:erbanova/Widgets/AppBar.dart';
 
-class CultivationLot extends StatelessWidget {
+class CultivationLot extends StatefulWidget {
+  @override
+  _CultivationLotState createState() => _CultivationLotState();
+}
+
+class _CultivationLotState extends State<CultivationLot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

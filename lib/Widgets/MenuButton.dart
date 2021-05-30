@@ -4,7 +4,7 @@ class MenuButton extends StatelessWidget {
   MenuButton({required this.text, required this.nextTab});
 
   final String text;
-  final StatelessWidget nextTab;
+  final StatefulWidget nextTab;
 
   @override
   Widget build(BuildContext context) {
