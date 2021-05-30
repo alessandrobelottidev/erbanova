@@ -34,7 +34,14 @@ class ErbanovaAppBarText extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(titleAppBar),
+      title: Text(
+        titleAppBar,
+        style: const TextStyle(
+          fontSize: 22,
+          fontFamily: 'Overlock',
+          fontWeight: FontWeight.w900,
+        ),
+      ),
       centerTitle: true,
       backgroundColor: Colors.black,
       brightness: Brightness.dark,

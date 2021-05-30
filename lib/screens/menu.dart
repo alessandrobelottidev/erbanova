@@ -28,6 +28,24 @@ class MyApp extends StatelessWidget {
               children: [
                 Row(
                   children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 6.0, top: 6.0, right: 6.0, bottom: 12.0),
+                        child: Text(
+                          'Lotto corrente: Esempio',
+                          style: const TextStyle(
+                            fontSize: 26,
+                            fontFamily: 'Overlock',
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
                     MenuButton(
                         text: 'Cambia lotto di coltivazione',
                         nextTab: CultivationLot()),
