@@ -29,7 +29,6 @@ dependencies:
   path_provider: ^2.0.2
   pdf: ^3.3.0
   open_file: ^3.2.1
-  native_pdf_view: ^4.0.1
 
 dev_dependencies:
   flutter_test:

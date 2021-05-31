@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
-import 'package:native_pdf_view/native_pdf_view.dart';
 
 class ListFilesInDirectory extends StatefulWidget {
   final String basePath;
@@ -16,16 +15,12 @@ class ListFilesInDirectory extends StatefulWidget {
 
 class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
   Future<List<File>> listOfFiles() async {
-    var files = [File("text.txt")];
-
+    List<File> files = [];
     final Directory? _appDocDir =
         Directory('${widget.basePath}/${widget.directory}');
 
     if (_appDocDir != null) {
       List<FileSystemEntity> entities = _appDocDir.listSync();
-
-      files.clear();
-
       for (FileSystemEntity entity in entities) {
         if (entity is File) {
           files.add(entity);
@@ -35,7 +30,7 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
     return files;
   }
 
-  var fileList = [File("")];
+  List<File> fileList = [];
 
   @override
   void initState() {
