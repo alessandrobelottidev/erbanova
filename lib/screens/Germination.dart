@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 
 // Widgets
 import 'package:erbanova/Widgets/AppBar.dart';
+import 'package:erbanova/Widgets/AddButton.dart';
+import 'package:erbanova/Widgets/ListFilesInDirectory.dart';
 
 class Germination extends StatefulWidget {
+  final basePath;
+  const Germination({@required this.basePath});
+
   @override
   _GerminationState createState() => _GerminationState();
 }
 
 class _GerminationState extends State<Germination> {
-  final List exampleList = ["Test1", "Test2", "Test3"];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase di germinazione'),
+      floatingActionButton: AddButton(),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(
@@ -24,21 +28,9 @@ class _GerminationState extends State<Germination> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height - 128.0,
-                child: ListView.builder(
-                  itemCount: exampleList.length,
-                  itemBuilder: (context, i) {
-                    return Card(
-                      child: ListTile(
-                        onTap: () {},
-                        title: Text(
-                          exampleList[i],
-                          style: const TextStyle(
-                            fontSize: 22,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+                child: ListFilesInDirectory(
+                  basePath: widget.basePath,
+                  directory: 'Report Germinazione',
                 ),
               ),
             ],

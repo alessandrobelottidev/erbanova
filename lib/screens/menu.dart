@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 // Widgets
@@ -6,7 +5,7 @@ import 'package:erbanova/Widgets/AppBar.dart';
 import 'package:erbanova/Widgets/MenuButton.dart';
 
 // Utilities
-import 'package:erbanova/Utilities/CurrentLot.dart';
+import 'package:erbanova/Utilities/FileSetup.dart';
 
 // Screens
 import 'package:erbanova/Screens/Blossom.dart';
@@ -22,7 +21,8 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  var currentLot = 'cazzata';
+  var currentLot;
+  var currentPath;
 
   @override
   void initState() {
@@ -31,6 +31,10 @@ class _MenuState extends State<Menu> {
     firstLot().then((String value) {
       setState(() => currentLot = value);
     });
+
+    firstLotPath().then((String value) {
+      setState(() => currentPath = value);
+    });
   }
 
   @override
@@ -38,7 +42,7 @@ class _MenuState extends State<Menu> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        accentColor: Colors.green[300],
+        accentColor: Colors.green[700],
       ),
       home: Scaffold(
         appBar: ErbanovaAppBarImage('assets/images/logo.png'),
@@ -71,27 +75,34 @@ class _MenuState extends State<Menu> {
                   children: [
                     MenuButton(
                         text: 'Cambia lotto di coltivazione',
-                        nextTab: CultivationLot()),
+                        nextTab: CultivationLot(basePath: currentPath)),
                   ],
                 ),
                 Row(
                   children: [
                     MenuButton(
-                        text: 'Fase di germinazione', nextTab: Germination()),
-                    MenuButton(text: 'Fase Vegetativa', nextTab: Vegetative()),
+                        text: 'Fase di germinazione',
+                        nextTab: Germination(basePath: currentPath)),
+                    MenuButton(
+                        text: 'Fase Vegetativa',
+                        nextTab: Vegetative(basePath: currentPath)),
                   ],
                 ),
                 Row(
                   children: [
-                    MenuButton(text: 'Fase di fioritura', nextTab: Blossom()),
-                    MenuButton(text: 'Fase di essicatura', nextTab: Drying()),
+                    MenuButton(
+                        text: 'Fase di fioritura',
+                        nextTab: Blossom(basePath: currentPath)),
+                    MenuButton(
+                        text: 'Fase di essicatura',
+                        nextTab: Drying(basePath: currentPath)),
                   ],
                 ),
                 Row(
                   children: [
                     MenuButton(
                         text: 'Report di fine raccolto',
-                        nextTab: EndOfHarvest()),
+                        nextTab: EndOfHarvest(basePath: currentPath)),
                   ],
                 ),
               ],
