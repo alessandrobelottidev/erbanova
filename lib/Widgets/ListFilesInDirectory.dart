@@ -30,6 +30,15 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
     return files;
   }
 
+  Future<int> deleteFile(File file) async {
+    try {
+      await file.delete();
+    } catch (e) {
+      print(e);
+    }
+    return 0;
+  }
+
   List<File> fileList = [];
 
   @override
@@ -51,19 +60,30 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
       itemBuilder: (context, i) {
         return Card(
           child: ListTile(
-            onTap: () {
-              OpenFile.open(fileList[i].path, type: "application/pdf");
-            },
+            onTap: () =>
+                OpenFile.open(fileList[i].path, type: "application/pdf"),
+            leading: Icon(
+              Icons.picture_as_pdf,
+              color: Colors.black87,
+              size: 28.0,
+            ),
             title: Text(
               basename(fileList[i].path),
               style: const TextStyle(
                 fontSize: 22,
               ),
             ),
-            trailing: Icon(
-              Icons.picture_as_pdf,
-              color: Colors.black87,
-              size: 28.0,
+            trailing: IconButton(
+              onPressed: () async {
+                await deleteFile(fileList[i]);
+                fileList = await listOfFiles();
+                setState(() {});
+              },
+              icon: Icon(
+                Icons.cancel,
+                size: 28.0,
+                color: Colors.red[400],
+              ),
             ),
           ),
         );
