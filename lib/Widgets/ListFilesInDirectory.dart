@@ -65,7 +65,7 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
                 OpenFile.open(fileList[i].path, type: "application/pdf"),
             leading: Icon(
               Icons.picture_as_pdf,
-              color: Colors.black87,
+              color: Colors.black54,
               size: 28.0,
             ),
             title: Text(

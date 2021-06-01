@@ -12,20 +12,36 @@ class FormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: TextFormField(
-      decoration: InputDecoration(
-        labelText: label,
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        cursorColor: Colors.green[700],
+        decoration: InputDecoration(
+          labelText: label,
+          filled: true,
+          fillColor: Colors.white,
+          labelStyle: new TextStyle(color: Colors.black87),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.green[700]!),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.green[700]!),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.green[700]!),
+          ),
+        ),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return '$label è obbligatorio';
+          }
+        },
+        onSaved: (String? value) {
+          if (value != null) {
+            state = value;
+          }
+        },
       ),
-      validator: (String? value) {
-        if (value != null) {
-          return '$label è obbligatorio';
-        }
-      },
-      onSaved: (String? value) {
-        if (value != null) {
-          state = value;
-        }
-      },
     ));
   }
 }
@@ -41,11 +57,12 @@ class SectionLabel extends StatelessWidget {
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(top: 24.0, bottom: 0.0),
+            padding: const EdgeInsets.only(top: 24.0, bottom: 0.0, left: 8.0),
             child: Text(
               text,
               style: const TextStyle(
                 fontSize: 22,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
@@ -139,6 +156,7 @@ class _FormGerminationState extends State<FormGermination> {
             children: [
               Container(
                 child: Form(
+                  key: _formKey,
                   child: Column(
                     children: <Widget>[
                       SectionLabel(
@@ -186,6 +204,38 @@ class _FormGerminationState extends State<FormGermination> {
                       Row(
                         children: <Widget>[
                           _buildOtherProblemsField(),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 6.0),
+                              child: Container(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    /*if (_formKey != null) {
+                                      if (_formKey.currentState.validate())
+                                    }*/
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.green[700]!),
+                                  ),
+                                  child: Text(
+                                    'Crea PDF',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ],
