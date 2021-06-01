@@ -18,7 +18,7 @@ class _VegetativeState extends State<Vegetative> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase vegetativa'),
-      floatingActionButton: AddButton(),
+      //floatingActionButton: AddButton(),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(

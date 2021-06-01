@@ -18,7 +18,7 @@ class _DryingState extends State<Drying> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase di essicatura'),
-      floatingActionButton: AddButton(),
+      //floatingActionButton: AddButton(),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(

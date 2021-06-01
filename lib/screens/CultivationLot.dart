@@ -18,7 +18,7 @@ class _CultivationLotState extends State<CultivationLot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Cambia lotto di coltivazione'),
-      floatingActionButton: AddButton(),
+      //floatingActionButton: AddButton(),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(

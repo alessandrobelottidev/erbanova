@@ -36,6 +36,7 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
     } catch (e) {
       print(e);
     }
+    fileList = await listOfFiles();
     return 0;
   }
 
@@ -74,10 +75,10 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
               ),
             ),
             trailing: IconButton(
-              onPressed: () async {
-                await deleteFile(fileList[i]);
-                fileList = await listOfFiles();
-                setState(() {});
+              onPressed: () {
+                deleteFile(fileList[i]).then((int i) {
+                  setState(() {});
+                });
               },
               icon: Icon(
                 Icons.cancel,

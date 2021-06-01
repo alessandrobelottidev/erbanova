@@ -18,7 +18,7 @@ class _EndOfHarvestState extends State<EndOfHarvest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Report di fine raccolto'),
-      floatingActionButton: AddButton(),
+      //floatingActionButton: AddButton(),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(

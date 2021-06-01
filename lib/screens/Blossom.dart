@@ -18,7 +18,7 @@ class _BlossomState extends State<Blossom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase di fioritura'),
-      floatingActionButton: AddButton(),
+      //floatingActionButton: AddButton(),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(

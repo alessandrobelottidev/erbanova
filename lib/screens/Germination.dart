@@ -1,9 +1,13 @@
+import 'package:erbanova/screens/FormGermination.dart';
 import 'package:flutter/material.dart';
 
 // Widgets
 import 'package:erbanova/Widgets/AppBar.dart';
 import 'package:erbanova/Widgets/AddButton.dart';
 import 'package:erbanova/Widgets/ListFilesInDirectory.dart';
+
+// Screens
+import 'package:erbanova/screens/FormGermination.dart';
 
 class Germination extends StatefulWidget {
   final basePath;
@@ -18,7 +22,17 @@ class _GerminationState extends State<Germination> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase di germinazione'),
-      floatingActionButton: AddButton(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    FormGermination(basePath: widget.basePath))),
+        child: Icon(
+          Icons.add_outlined,
+          size: 30.0,
+        ),
+      ),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(
