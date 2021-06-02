@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 // Widgets
 import 'package:erbanova/Widgets/AppBar.dart';
-import 'package:erbanova/Widgets/AddButton.dart';
 import 'package:erbanova/Widgets/ListFilesInDirectory.dart';
 
 class Drying extends StatefulWidget {

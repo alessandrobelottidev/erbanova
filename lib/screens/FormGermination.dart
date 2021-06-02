@@ -2,75 +2,9 @@ import 'package:flutter/material.dart';
 
 // Widgets
 import 'package:erbanova/Widgets/AppBar.dart';
-
-class FormField extends StatelessWidget {
-  FormField({required this.label, required this.state});
-
-  String label;
-  String state;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        cursorColor: Colors.green[700],
-        decoration: InputDecoration(
-          labelText: label,
-          filled: true,
-          fillColor: Colors.white,
-          labelStyle: new TextStyle(color: Colors.black87),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.green[700]!),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.green[700]!),
-          ),
-          border: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.green[700]!),
-          ),
-        ),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return '$label è obbligatorio';
-          }
-        },
-        onSaved: (String? value) {
-          if (value != null) {
-            state = value;
-          }
-        },
-      ),
-    ));
-  }
-}
-
-class SectionLabel extends StatelessWidget {
-  SectionLabel({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 24.0, bottom: 0.0, left: 8.0),
-            child: Text(
-              text,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+import 'package:erbanova/widgets/FormField.dart' as CustomForm;
+import 'package:erbanova/widgets/SectionLabel.dart';
+import 'package:erbanova/widgets/RadioField.dart';
 
 class FormGermination extends StatefulWidget {
   final String basePath;
@@ -91,57 +25,12 @@ class _FormGerminationState extends State<FormGermination> {
   String _waterTemperature = '';
   String _otherProblems = '';
 
-  Widget _buildTemperatureField() {
-    return FormField(label: 'Temperatura', state: _temperature);
-  }
-
-  Widget _buildHumidityField() {
-    return FormField(label: 'Umidità', state: _humidity);
-  }
-
-  Widget _buildPHField() {
-    return FormField(label: 'PH', state: _ph);
-  }
-
-  Widget _buildECField() {
-    return FormField(label: 'EC', state: _ec);
-  }
-
-  Widget _buildTDSField() {
-    return FormField(label: 'TDS', state: _tds);
-  }
-
-  Widget _buildWaterTemperatureField() {
-    return FormField(label: 'Temp. Acqua', state: _waterTemperature);
-  }
-
-  /*Widget _buildVisibleRootsSelect() {
-    return null;
-  }
-
-  Widget _buildVisibleDamageSelect() {
-    return null;
-  }
-
-  Widget _buildSproutedSeedSelect() {
-    return null;
-  }
-
-  Widget _buildGrowthProblemsSelect() {
-    return null;
-  }
-
-  Widget _buildChlorosisAndFoliarProblemsSelect() {
-    return null;
-  }
-
-  Widget _buildSignsOfMoldSelect() {
-    return null;
-  }*/
-
-  Widget _buildOtherProblemsField() {
-    return FormField(label: 'Altri problemi', state: _otherProblems);
-  }
+  bool _visibleRoots = false;
+  bool _damageSignals = false;
+  bool _sproutedSeed = false;
+  bool _chlorosisAndFoliarProblems = false;
+  bool _growthProblems = false;
+  bool _signsOfMold = false;
 
   @override
   Widget build(BuildContext context) {
@@ -164,8 +53,10 @@ class _FormGerminationState extends State<FormGermination> {
                       ),
                       Row(
                         children: <Widget>[
-                          _buildTemperatureField(),
-                          _buildHumidityField(),
+                          CustomForm.FormField(
+                              label: 'Temperatura', state: _temperature),
+                          CustomForm.FormField(
+                              label: 'Umidità', state: _humidity),
                         ],
                       ),
                       SectionLabel(
@@ -173,37 +64,196 @@ class _FormGerminationState extends State<FormGermination> {
                       ),
                       Row(
                         children: <Widget>[
-                          _buildPHField(),
-                          _buildWaterTemperatureField(),
+                          CustomForm.FormField(label: 'PH', state: _ph),
+                          CustomForm.FormField(
+                              label: 'Temp. Acqua', state: _waterTemperature),
                         ],
                       ),
                       Row(
                         children: [
-                          _buildTDSField(),
-                          _buildECField(),
+                          CustomForm.FormField(label: 'TDS', state: _tds),
+                          CustomForm.FormField(label: 'EC', state: _ec),
                         ],
                       ),
-
-                      /*SectionLabel(text: 'Controlli sulla pianta',),
-                      Row(
-                        children: <Widget>[
-                          
-                          _buildSproutedSeedSelect(),
-                          _buildGrowthProblemsSelect(),
+                      SectionLabel(
+                        text: 'Controlli radici',
+                      ),
+                      RadioRow(
+                        rowChildren: [
+                          RadioField(
+                            selectText: 'Radici visibili: ',
+                            paddingLeft: false,
+                            radioTrue: Radio(
+                              value: true,
+                              groupValue: _visibleRoots,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _visibleRoots = value;
+                                  });
+                                }
+                              },
+                            ),
+                            radioFalse: Radio(
+                              value: false,
+                              groupValue: _visibleRoots,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _visibleRoots = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                          RadioField(
+                            selectText: 'Segni di danni: ',
+                            paddingLeft: true,
+                            radioTrue: Radio(
+                              value: true,
+                              groupValue: _damageSignals,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _damageSignals = value;
+                                  });
+                                }
+                              },
+                            ),
+                            radioFalse: Radio(
+                              value: false,
+                              groupValue: _damageSignals,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _damageSignals = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
                         ],
                       ),
-                      Row(
-                        children: <Widget>[
-                          _buildChlorosisAndFoliarProblemsSelect(),
-                          _buildSignsOfMoldSelect(),
+                      SectionLabel(text: 'Controlli sulla pianta'),
+                      RadioRow(
+                        rowChildren: [
+                          RadioField(
+                            selectText: 'Seme germogliato: ',
+                            paddingLeft: false,
+                            radioTrue: Radio(
+                              value: true,
+                              groupValue: _sproutedSeed,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _sproutedSeed = value;
+                                  });
+                                }
+                              },
+                            ),
+                            radioFalse: Radio(
+                              value: false,
+                              groupValue: _sproutedSeed,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _sproutedSeed = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                          RadioField(
+                            selectText: 'Problemi di crescita',
+                            paddingLeft: true,
+                            radioTrue: Radio(
+                              value: true,
+                              groupValue: _growthProblems,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _growthProblems = value;
+                                  });
+                                }
+                              },
+                            ),
+                            radioFalse: Radio(
+                              value: false,
+                              groupValue: _growthProblems,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _growthProblems = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
                         ],
-                      ),*/
+                      ),
+                      RadioRow(
+                        rowChildren: [
+                          RadioField(
+                            selectText: 'Clorosi e problemi fogliari: ',
+                            paddingLeft: false,
+                            radioTrue: Radio(
+                              value: true,
+                              groupValue: _chlorosisAndFoliarProblems,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _chlorosisAndFoliarProblems = value;
+                                  });
+                                }
+                              },
+                            ),
+                            radioFalse: Radio(
+                              value: false,
+                              groupValue: _chlorosisAndFoliarProblems,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _chlorosisAndFoliarProblems = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                          RadioField(
+                            selectText: 'Segni di muffa: ',
+                            paddingLeft: true,
+                            radioTrue: Radio(
+                              value: true,
+                              groupValue: _signsOfMold,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _signsOfMold = value;
+                                  });
+                                }
+                              },
+                            ),
+                            radioFalse: Radio(
+                              value: false,
+                              groupValue: _signsOfMold,
+                              onChanged: (bool? value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _signsOfMold = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                       SectionLabel(
                         text: 'Altro',
                       ),
                       Row(
                         children: <Widget>[
-                          _buildOtherProblemsField(),
+                          CustomForm.FormField(
+                              label: 'Altri problemi', state: _otherProblems),
                         ],
                       ),
                       Row(
