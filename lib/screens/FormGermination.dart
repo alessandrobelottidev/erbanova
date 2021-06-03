@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+// Utilities
+import 'package:erbanova/utilities/PdfApi.dart';
+
 // Widgets
-import 'package:erbanova/Widgets/AppBar.dart';
+import 'package:erbanova/widgets/AppBar.dart';
 import 'package:erbanova/widgets/ContainerField.dart';
 import 'package:erbanova/widgets/SectionLabel.dart';
 import 'package:erbanova/widgets/RadioField.dart';
@@ -321,7 +324,7 @@ class _FormGerminationState extends State<FormGermination> {
                           child: Container(
                             height: 50.0,
                             child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_temperature.isNotEmpty &&
                                     _humidity.isNotEmpty &&
                                     _ph.isNotEmpty &&
@@ -349,6 +352,11 @@ class _FormGerminationState extends State<FormGermination> {
                                       checkRadio(_signsOfMold));
 
                                   print(': ' + _otherProblems);
+
+                                  final pdf = await PdfApi.generateCenteredText(
+                                      widget.basePath + '/Report Germinazione',
+                                      'Temperatura: ' + _temperature);
+                                  Navigator.pop(context, true);
                                 } else {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(

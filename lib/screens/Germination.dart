@@ -21,11 +21,17 @@ class _GerminationState extends State<Germination> {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase di germinazione'),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    FormGermination(basePath: widget.basePath))),
+        onPressed: () async {
+          final form = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      FormGermination(basePath: widget.basePath)));
+
+          if (form) {
+            print('this works');
+          }
+        },
         child: Icon(
           Icons.add_outlined,
           size: 30.0,
