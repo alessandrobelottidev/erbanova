@@ -29,7 +29,7 @@ class _GerminationState extends State<Germination> {
                       FormGermination(basePath: widget.basePath)));
 
           if (form) {
-            setState(() {});
+            Navigator.pop(context);
           }
         },
         child: Icon(
