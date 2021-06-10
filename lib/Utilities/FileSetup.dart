@@ -24,6 +24,16 @@ Future<String> firstLotName() async {
 
     if (!seen) {
       Directory('${_appDocDir.path}/LO-BASE/').create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Germinazione')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Vegetativa')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Fine Raccolto')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Essicatura')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Fioritura')
+          .create(recursive: true);
       return 'LO-BASE';
     }
   }
@@ -50,6 +60,16 @@ Future<String> firstLotPath() async {
 
     if (!seen) {
       Directory('${_appDocDir.path}/LO-BASE/').create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Germinazione')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Vegetativa')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Fine Raccolto')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Essicatura')
+          .create(recursive: true);
+      Directory('${_appDocDir.path}/LO-BASE/Report Fioritura')
+          .create(recursive: true);
       return basename(Directory('${_appDocDir.path}/LO-BASE/').path);
     }
   }
