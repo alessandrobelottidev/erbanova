@@ -5,36 +5,54 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<String> firstLot() async {
-  //Get App Document Directory
+Future<String> firstLotName() async {
+  //Get External Storage Directory
   final Directory? _appDocDir = await getExternalStorageDirectory();
-  //App Document Directory + folder name
+
   if (_appDocDir != null) {
     List<FileSystemEntity> entities = _appDocDir.listSync();
 
+    bool seen = false;
+
     for (FileSystemEntity entity in entities) {
       if (entity is Directory) {
-        return basename(entity.path);
+        if (basename(entity.path) == 'LO-BASE') {
+          return basename(entity.path);
+        }
       }
+    }
+
+    if (!seen) {
+      Directory('${_appDocDir.path}/LO-BASE/').create(recursive: true);
+      return 'LO-BASE';
     }
   }
 
-  return "Error: D1";
+  return 'Error: D1';
 }
 
 Future<String> firstLotPath() async {
-  //Get App Document Directory
+  //Get External Storage Directory
   final Directory? _appDocDir = await getExternalStorageDirectory();
-  //App Document Directory + folder name
+
   if (_appDocDir != null) {
     List<FileSystemEntity> entities = _appDocDir.listSync();
 
+    bool seen = false;
+
     for (FileSystemEntity entity in entities) {
       if (entity is Directory) {
-        return entity.path;
+        if (basename(entity.path) == 'LO-BASE') {
+          return entity.path;
+        }
       }
+    }
+
+    if (!seen) {
+      Directory('${_appDocDir.path}/LO-BASE/').create(recursive: true);
+      return basename(Directory('${_appDocDir.path}/LO-BASE/').path);
     }
   }
 
-  return "Error: D1";
+  return 'Error: D1';
 }

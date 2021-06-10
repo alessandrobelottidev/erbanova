@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import 'package:erbanova/Widgets/AppBar.dart';
-import 'package:erbanova/Widgets/ListFilesInDirectory.dart';
+import 'package:erbanova/widgets/AppBar.dart';
+import 'package:erbanova/widgets/ListFilesInDirectory.dart';
 
 class EndOfHarvest extends StatefulWidget {
   final basePath;

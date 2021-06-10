@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import 'package:erbanova/Widgets/AppBar.dart';
-import 'package:erbanova/Widgets/MenuButton.dart';
+import 'package:erbanova/widgets/AppBar.dart';
+import 'package:erbanova/widgets/MenuButton.dart';
 
 // Utilities
-import 'package:erbanova/Utilities/FileSetup.dart';
+import 'package:erbanova/utilities/FileSetup.dart';
 
 // Screens
-import 'package:erbanova/Screens/Blossom.dart';
-import 'package:erbanova/Screens/CultivationLot.dart';
-import 'package:erbanova/Screens/Drying.dart';
-import 'package:erbanova/Screens/EndOfHarvest.dart';
-import 'package:erbanova/Screens/Germination.dart';
-import 'package:erbanova/Screens/Vegetative.dart';
+import 'package:erbanova/screens/Blossom.dart';
+import 'package:erbanova/screens/CultivationLot.dart';
+import 'package:erbanova/screens/Drying.dart';
+import 'package:erbanova/screens/EndOfHarvest.dart';
+import 'package:erbanova/screens/Germination.dart';
+import 'package:erbanova/screens/Vegetative.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _MenuState extends State<Menu> {
   void initState() {
     super.initState();
 
-    firstLot().then((String value) {
+    firstLotName().then((String value) {
       setState(() => _currentLot = value);
     });
 

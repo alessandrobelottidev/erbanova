@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import 'package:erbanova/Widgets/AppBar.dart';
-import 'package:erbanova/Widgets/ListFilesInDirectory.dart';
+import 'package:erbanova/widgets/AppBar.dart';
+import 'package:erbanova/widgets/ListFilesInDirectory.dart';
 
 // Screens
 import 'package:erbanova/screens/FormGermination.dart';
