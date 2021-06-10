@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import 'package:image_picker/image_picker.dart';
 
 // Utilities
 import 'package:erbanova/utilities/PdfApi.dart';
@@ -35,6 +38,20 @@ class _FormGerminationState extends State<FormGermination> {
   bool _chlorosisAndFoliarProblems = false;
   bool _growthProblems = false;
   bool _signsOfMold = false;
+
+  var _image;
+
+  Future getImage() async {
+    PickedFile? image =
+        await ImagePicker().getImage(source: ImageSource.camera);
+
+    if (image != null) {
+      final File file = File(image.path);
+      setState(() {
+        _image = file;
+      });
+    }
+  }
 
   InputDecoration inputDecoration(String label) {
     return InputDecoration(
@@ -103,7 +120,7 @@ class _FormGerminationState extends State<FormGermination> {
           titleAppBar: 'Crea nuovo report germinazione',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
-            onPressed: () {},
+            onPressed: () => getImage(),
           )),
       body: Container(
         color: Colors.lightGreen[200],
@@ -335,33 +352,13 @@ class _FormGerminationState extends State<FormGermination> {
                                     _ph.isNotEmpty &&
                                     _ec.isNotEmpty &&
                                     _tds.isNotEmpty &&
-                                    _waterTemperature.isNotEmpty) {
-                                  /*print('Temperatura: ' + _temperature);
-                                  print('Umidità: ' + _humidity);
-                                  print('PH: ' + _ph);
-                                  print('EC: ' + _ec);
-                                  print('TDS: ' + _tds);
-                                  print('Temp. Acqua: ' + _waterTemperature);
-
-                                  print('Radici visibili: ' +
-                                      checkRadio(_visibleRoots));
-                                  print('Segni di danni: ' +
-                                      checkRadio(_damageSignals));
-                                  print('Semi germogliati: ' +
-                                      checkRadio(_sproutedSeed));
-                                  print('Clorosi e problemi fogliari: ' +
-                                      checkRadio(_chlorosisAndFoliarProblems));
-                                  print('Problemi di crescita: ' +
-                                      checkRadio(_growthProblems));
-                                  print('Segni di muffa: ' +
-                                      checkRadio(_signsOfMold));
-
-                                  print(': ' + _otherProblems);*/
-
+                                    _waterTemperature.isNotEmpty &&
+                                    _image != null) {
                                   await PdfApi.generateFormGermination(
                                       path: widget.basePath +
                                           '/Report Germinazione',
                                       lot: basename(widget.basePath),
+                                      image: _image,
                                       params: [
                                         _temperature,
                                         _humidity,
@@ -385,7 +382,7 @@ class _FormGerminationState extends State<FormGermination> {
                                             label: 'Chiudi',
                                             onPressed: () {
                                               ScaffoldMessenger.of(context)
-                                                  .hideCurrentSnackBar;
+                                                  .hideCurrentSnackBar();
                                             },
                                           ),
                                           content: Row(
@@ -397,11 +394,9 @@ class _FormGerminationState extends State<FormGermination> {
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 8.0),
-                                                child: Expanded(
-                                                  child: Text(
-                                                      'Alcuni input non sono compilati!'),
-                                                ),
-                                              )
+                                                child: Text(
+                                                    'Alcuni input o immagini non sono stati inseriti!'),
+                                              ),
                                             ],
                                           )));
                                 }
