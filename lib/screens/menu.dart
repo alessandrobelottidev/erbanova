@@ -21,19 +21,19 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  var currentLot;
-  var currentPath;
+  var _currentLot;
+  var _currentPath;
 
   @override
   void initState() {
     super.initState();
 
     firstLot().then((String value) {
-      setState(() => currentLot = value);
+      setState(() => _currentLot = value);
     });
 
     firstLotPath().then((String value) {
-      setState(() => currentPath = value);
+      setState(() => _currentPath = value);
     });
   }
 
@@ -60,7 +60,7 @@ class _MenuState extends State<Menu> {
                         padding: const EdgeInsets.only(
                             left: 6.0, top: 6.0, right: 6.0, bottom: 12.0),
                         child: Text(
-                          'Lotto corrente: $currentLot',
+                          'Lotto corrente: $_currentLot',
                           style: const TextStyle(
                             fontSize: 26,
                             fontFamily: 'Overlock',
@@ -75,34 +75,34 @@ class _MenuState extends State<Menu> {
                   children: [
                     MenuButton(
                         text: 'Cambia lotto di coltivazione',
-                        nextTab: CultivationLot(basePath: currentPath)),
+                        nextTab: CultivationLot(basePath: _currentPath)),
                   ],
                 ),
                 Row(
                   children: [
                     MenuButton(
                         text: 'Fase di germinazione',
-                        nextTab: Germination(basePath: currentPath)),
+                        nextTab: Germination(basePath: _currentPath)),
                     MenuButton(
                         text: 'Fase Vegetativa',
-                        nextTab: Vegetative(basePath: currentPath)),
+                        nextTab: Vegetative(basePath: _currentPath)),
                   ],
                 ),
                 Row(
                   children: [
                     MenuButton(
                         text: 'Fase di fioritura',
-                        nextTab: Blossom(basePath: currentPath)),
+                        nextTab: Blossom(basePath: _currentPath)),
                     MenuButton(
                         text: 'Fase di essicatura',
-                        nextTab: Drying(basePath: currentPath)),
+                        nextTab: Drying(basePath: _currentPath)),
                   ],
                 ),
                 Row(
                   children: [
                     MenuButton(
                         text: 'Report di fine raccolto',
-                        nextTab: EndOfHarvest(basePath: currentPath)),
+                        nextTab: EndOfHarvest(basePath: _currentPath)),
                   ],
                 ),
               ],
