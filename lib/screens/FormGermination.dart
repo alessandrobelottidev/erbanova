@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 // Utilities
 import 'package:erbanova/utilities/PdfApi.dart';
@@ -98,8 +99,12 @@ class _FormGerminationState extends State<FormGermination> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ErbanovaAppBarText('Crea nuovo report germinazione'),
-      //resizeToAvoidBottomInset: false,
+      appBar: ErbanovaAppBarAct(
+          titleAppBar: 'Crea nuovo report germinazione',
+          actions: IconButton(
+            icon: Icon(Icons.camera_alt),
+            onPressed: () {},
+          )),
       body: Container(
         color: Colors.lightGreen[200],
         height: double.infinity,
@@ -331,7 +336,7 @@ class _FormGerminationState extends State<FormGermination> {
                                     _ec.isNotEmpty &&
                                     _tds.isNotEmpty &&
                                     _waterTemperature.isNotEmpty) {
-                                  print('Temperatura: ' + _temperature);
+                                  /*print('Temperatura: ' + _temperature);
                                   print('Umidità: ' + _humidity);
                                   print('PH: ' + _ph);
                                   print('EC: ' + _ec);
@@ -351,11 +356,27 @@ class _FormGerminationState extends State<FormGermination> {
                                   print('Segni di muffa: ' +
                                       checkRadio(_signsOfMold));
 
-                                  print(': ' + _otherProblems);
+                                  print(': ' + _otherProblems);*/
 
-                                  final pdf = await PdfApi.generateCenteredText(
-                                      widget.basePath + '/Report Germinazione',
-                                      'Temperatura: ' + _temperature);
+                                  await PdfApi.generateFormGermination(
+                                      path: widget.basePath +
+                                          '/Report Germinazione',
+                                      lot: basename(widget.basePath),
+                                      params: [
+                                        _temperature,
+                                        _humidity,
+                                        _ph,
+                                        _ec,
+                                        _tds,
+                                        _waterTemperature,
+                                        checkRadio(_visibleRoots),
+                                        checkRadio(_damageSignals),
+                                        checkRadio(_sproutedSeed),
+                                        checkRadio(_growthProblems),
+                                        checkRadio(_signsOfMold),
+                                        checkRadio(_chlorosisAndFoliarProblems),
+                                        _otherProblems
+                                      ]);
                                   Navigator.pop(context, true);
                                 } else {
                                   ScaffoldMessenger.of(context)

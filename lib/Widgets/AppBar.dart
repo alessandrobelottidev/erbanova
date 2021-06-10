@@ -51,3 +51,32 @@ class ErbanovaAppBarText extends StatelessWidget
   @override
   Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }
+
+class ErbanovaAppBarAct extends StatelessWidget implements PreferredSizeWidget {
+  final AppBar appBar = AppBar();
+  final String titleAppBar;
+  var actions;
+
+  ErbanovaAppBarAct({required this.titleAppBar, this.actions});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        titleAppBar,
+        style: const TextStyle(
+          fontSize: 22,
+          fontFamily: 'Overlock',
+          fontWeight: FontWeight.w900,
+        ),
+      ),
+      actions: [this.actions],
+      centerTitle: true,
+      backgroundColor: Colors.black,
+      brightness: Brightness.dark,
+    );
+  }
+
+  @override
+  Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
+}
