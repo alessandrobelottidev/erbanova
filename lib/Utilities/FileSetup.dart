@@ -70,7 +70,7 @@ Future<String> firstLotPath() async {
           .create(recursive: true);
       Directory('${_appDocDir.path}/LO-BASE/Report Fioritura')
           .create(recursive: true);
-      return basename(Directory('${_appDocDir.path}/LO-BASE/').path);
+      return '${_appDocDir.path}/LO-BASE/';
     }
   }
 
