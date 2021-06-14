@@ -105,25 +105,6 @@ class PdfApi {
 
     final _image = MemoryImage(image.readAsBytesSync());
 
-    /*
-    _temperature,
-    _humidity,
-    _ph,
-    _ec,
-    _tds,
-    _waterTemperature,
-    checkRadio(_regularWaterLevel),
-    checkRadio(_regularFertilizerLevel),
-    checkRadio(_regularRootsGrowth),
-    checkRadio(_damageSignals),
-    checkRadio(_hoursOfLightAndDarkRegular),
-    checkRadio(_Scrog),
-    checkRadio(_chlorosisAndFoliarProblems),
-    checkRadio(_continuteToBlossom),
-    checkRadio(_signsOfMold),
-    _otherProblems
-    */
-
     pdf.addPage(MultiPage(
         build: (context) => [
               Center(
@@ -154,9 +135,9 @@ class PdfApi {
                     Text('PH: ' + params[2]),
                     Text('EC: ' + params[3]),
                     Text('TDS: ' + params[4]),
-                    Text('Temp. Acqua' + params[5]),
-                    Text('Livello Acqua regolare' + params[6]),
-                    Text('Dosaggio Fertilizzante regolare' + params[7]),
+                    Text('Temp. Acqua: ' + params[5]),
+                    Text('Livello Acqua regolare: ' + params[6]),
+                    Text('Dosaggio Fertilizzante regolare: ' + params[7]),
                     SizedBox(height: 15),
                     Text('Controllo radici',
                         style: TextStyle(fontWeight: FontWeight.bold)),
