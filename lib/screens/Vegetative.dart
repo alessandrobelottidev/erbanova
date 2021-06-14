@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:erbanova/widgets/AppBar.dart';
 import 'package:erbanova/widgets/ListFilesInDirectory.dart';
 
+// Screens
+import 'package:erbanova/screens/FormVegetative.dart';
+
 class Vegetative extends StatefulWidget {
   final basePath;
   const Vegetative({@required this.basePath});
@@ -17,7 +20,23 @@ class _VegetativeState extends State<Vegetative> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase vegetativa'),
-      //floatingActionButton: AddButton(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final form = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      FormVegetative(basePath: widget.basePath)));
+
+          if (form) {
+            Navigator.pop(context);
+          }
+        },
+        child: Icon(
+          Icons.add_outlined,
+          size: 30.0,
+        ),
+      ),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(
