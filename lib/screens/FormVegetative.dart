@@ -121,7 +121,7 @@ class _FormVegetativeState extends State<FormVegetative> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report germinazione',
+          titleAppBar: 'Crea nuovo report vegetativa',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),
