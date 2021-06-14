@@ -119,6 +119,8 @@ class _FormVegetativeState extends State<FormVegetative> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: ErbanovaAppBarAct(
           titleAppBar: 'Crea nuovo report vegetativa',
@@ -162,8 +164,10 @@ class _FormVegetativeState extends State<FormVegetative> {
                     ],
                   ),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Livello Acqua regolare: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -190,6 +194,7 @@ class _FormVegetativeState extends State<FormVegetative> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Dosaggio Fertilizzante regolare: ',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -221,8 +226,10 @@ class _FormVegetativeState extends State<FormVegetative> {
                     text: 'Controlli radici',
                   ),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Crescita regolare: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -249,6 +256,7 @@ class _FormVegetativeState extends State<FormVegetative> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Segni di danni: ',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -280,8 +288,10 @@ class _FormVegetativeState extends State<FormVegetative> {
                     text: 'Controlli illuminazione',
                   ),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Ore di Luce/Buio Rispettate: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -312,8 +322,10 @@ class _FormVegetativeState extends State<FormVegetative> {
                   ),
                   SectionLabel(text: 'Controlli sulla pianta'),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'SCROG e topping regolari: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -340,6 +352,7 @@ class _FormVegetativeState extends State<FormVegetative> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Procedere alla Fioritura?',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -368,8 +381,10 @@ class _FormVegetativeState extends State<FormVegetative> {
                     ],
                   ),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Clorosi e problemi fogliari: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -396,6 +411,7 @@ class _FormVegetativeState extends State<FormVegetative> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Segni di muffa: ',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -488,11 +504,9 @@ class _FormVegetativeState extends State<FormVegetative> {
                                                 Icons.error,
                                                 color: Colors.white,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0),
+                                              Expanded(
                                                 child: Text(
-                                                    'Alcuni input o immagini non sono stati inseriti!'),
+                                                    'Alcuni moduli o foto non sono stati inseriti!'),
                                               ),
                                             ],
                                           )));

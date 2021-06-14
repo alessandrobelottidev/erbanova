@@ -115,6 +115,8 @@ class _FormGerminationState extends State<FormGermination> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: ErbanovaAppBarAct(
           titleAppBar: 'Crea nuovo report germinazione',
@@ -161,8 +163,10 @@ class _FormGerminationState extends State<FormGermination> {
                     text: 'Controlli radici',
                   ),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Radici visibili: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -189,6 +193,7 @@ class _FormGerminationState extends State<FormGermination> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Segni di danni: ',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -218,8 +223,10 @@ class _FormGerminationState extends State<FormGermination> {
                   ),
                   SectionLabel(text: 'Controlli sulla pianta'),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Seme germogliato: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -246,6 +253,7 @@ class _FormGerminationState extends State<FormGermination> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Problemi di crescita',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -274,8 +282,10 @@ class _FormGerminationState extends State<FormGermination> {
                     ],
                   ),
                   RadioRow(
+                    screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Clorosi e problemi fogliari: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -302,6 +312,7 @@ class _FormGerminationState extends State<FormGermination> {
                         ),
                       ),
                       RadioField(
+                        screenWidth: screenWidth,
                         selectText: 'Segni di muffa: ',
                         paddingLeft: true,
                         radioTrue: Radio(
@@ -391,11 +402,9 @@ class _FormGerminationState extends State<FormGermination> {
                                                 Icons.error,
                                                 color: Colors.white,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0),
+                                              Expanded(
                                                 child: Text(
-                                                    'Alcuni input o immagini non sono stati inseriti!'),
+                                                    'Alcuni moduli o foto non sono stati inseriti!'),
                                               ),
                                             ],
                                           )));
