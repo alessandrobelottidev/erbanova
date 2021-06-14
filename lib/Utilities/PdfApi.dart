@@ -262,6 +262,69 @@ class PdfApi {
     return saveDocument(path: path, name: '$title - $date.pdf', pdf: pdf);
   }
 
+  /*
+  _temperature,
+  _humidity,
+  checkRadio(_signsOfMold),
+  checkRadio(_airRecycling),
+  _flowerState,
+  _branchesDryness,
+  checkRadio(_completeDrying)
+  */
+
+  static Future<File> generateFormDrying(
+      {required String path,
+      required String lot,
+      required File image,
+      required List<String> params}) async {
+    final pdf = Document();
+    final String title = pdfName(path);
+    DateTime now = new DateTime.now();
+    String date = DateFormat('dd-MM-yyyy').format(now);
+
+    final _image = MemoryImage(image.readAsBytesSync());
+
+    pdf.addPage(MultiPage(
+        build: (context) => [
+              Center(
+                child: Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Text('Lotto: ' + lot),
+                        Expanded(
+                            child:
+                                Center(child: Text(title + ' - Essicatura'))),
+                        Text('Data: ' + date),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Text('Valori ambientali',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(height: 5),
+                    Text('Temperatura: ' + params[0]),
+                    Text('Umidità: ' + params[1]),
+                    SizedBox(height: 15),
+                    Text('Controlli di routine',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(height: 5),
+                    Text('Segni di Muffa: ${params[2]}'),
+                    Text('Ricircolo di aria rispettato: ${params[3]}'),
+                    Text('Stato del Fiore: ${params[4]}'),
+                    Text('Controllo secchezza rami: ${params[5]}'),
+                    Text('Essiccatura completa? ${params[6]}'),
+                  ],
+                )),
+              ),
+              Image(_image),
+            ]));
+
+    return saveDocument(path: path, name: '$title - $date.pdf', pdf: pdf);
+  }
+
   static Future<File> saveDocument({
     required String path,
     required String name,

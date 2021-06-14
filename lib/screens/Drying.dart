@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:erbanova/widgets/AppBar.dart';
 import 'package:erbanova/widgets/ListFilesInDirectory.dart';
 
+// Screens
+import 'package:erbanova/screens/forms/FormDrying.dart';
+
 class Drying extends StatefulWidget {
   final basePath;
   const Drying({@required this.basePath});
@@ -17,7 +20,22 @@ class _DryingState extends State<Drying> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ErbanovaAppBarText('Fase di essicatura'),
-      //floatingActionButton: AddButton(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final form = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FormDrying(basePath: widget.basePath)));
+
+          if (form) {
+            Navigator.pop(context);
+          }
+        },
+        child: Icon(
+          Icons.add_outlined,
+          size: 30.0,
+        ),
+      ),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(
