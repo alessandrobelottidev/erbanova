@@ -13,15 +13,15 @@ import 'package:erbanova/widgets/ContainerField.dart';
 import 'package:erbanova/widgets/SectionLabel.dart';
 import 'package:erbanova/widgets/RadioField.dart';
 
-class FormGermination extends StatefulWidget {
+class FormVegetative extends StatefulWidget {
   final String basePath;
-  const FormGermination({required this.basePath});
+  const FormVegetative({required this.basePath});
 
   @override
-  _FormGerminationState createState() => _FormGerminationState();
+  _FormVegetativeState createState() => _FormVegetativeState();
 }
 
-class _FormGerminationState extends State<FormGermination> {
+class _FormVegetativeState extends State<FormVegetative> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _temperature = '';
@@ -32,11 +32,14 @@ class _FormGerminationState extends State<FormGermination> {
   String _waterTemperature = '';
   String _otherProblems = '';
 
-  bool _visibleRoots = false;
+  bool _regularWaterLevel = false;
+  bool _regularFertilizerLevel = false;
+  bool _regularRootsGrowth = false;
   bool _damageSignals = false;
-  bool _sproutedSeed = false;
+  bool _hoursOfLightAndDarkRegular = false;
+  bool _Scrog = false;
   bool _chlorosisAndFoliarProblems = false;
-  bool _growthProblems = false;
+  bool _continuteToBlossom = false;
   bool _signsOfMold = false;
 
   var _image;
@@ -80,6 +83,7 @@ class _FormGerminationState extends State<FormGermination> {
           switch (state) {
             case '_temperature':
               this._temperature = value;
+              print(this._temperature);
               break;
             case '_humidity':
               this._humidity = value;
@@ -119,7 +123,7 @@ class _FormGerminationState extends State<FormGermination> {
 
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report germinazione',
+          titleAppBar: 'Crea nuovo report vegetativa',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),
@@ -129,7 +133,7 @@ class _FormGerminationState extends State<FormGermination> {
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.only(
-              left: 10.0, top: 24.0, right: 10.0, bottom: 0.0),
+              left: 10.0, top: 0.0, right: 10.0, bottom: 10.0),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -159,6 +163,65 @@ class _FormGerminationState extends State<FormGermination> {
                       _builderFormField('EC', '_ec'),
                     ],
                   ),
+                  RadioRow(
+                    screenWidth: screenWidth,
+                    rowChildren: [
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Livello Acqua regolare: ',
+                        paddingLeft: false,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _regularWaterLevel,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _regularWaterLevel = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _regularWaterLevel,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _regularWaterLevel = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Dosaggio Fertilizzante regolare: ',
+                        paddingLeft: true,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _regularFertilizerLevel,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _regularFertilizerLevel = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _regularFertilizerLevel,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _regularFertilizerLevel = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                   SectionLabel(
                     text: 'Controlli radici',
                   ),
@@ -167,26 +230,26 @@ class _FormGerminationState extends State<FormGermination> {
                     rowChildren: [
                       RadioField(
                         screenWidth: screenWidth,
-                        selectText: 'Radici visibili: ',
+                        selectText: 'Crescita regolare: ',
                         paddingLeft: false,
                         radioTrue: Radio(
                           value: true,
-                          groupValue: _visibleRoots,
+                          groupValue: _regularRootsGrowth,
                           onChanged: (bool? value) {
                             if (value != null) {
                               setState(() {
-                                _visibleRoots = value;
+                                _regularRootsGrowth = value;
                               });
                             }
                           },
                         ),
                         radioFalse: Radio(
                           value: false,
-                          groupValue: _visibleRoots,
+                          groupValue: _regularRootsGrowth,
                           onChanged: (bool? value) {
                             if (value != null) {
                               setState(() {
-                                _visibleRoots = value;
+                                _regularRootsGrowth = value;
                               });
                             }
                           },
@@ -221,32 +284,68 @@ class _FormGerminationState extends State<FormGermination> {
                       ),
                     ],
                   ),
-                  SectionLabel(text: 'Controlli sulla pianta'),
+                  SectionLabel(
+                    text: 'Controlli illuminazione',
+                  ),
                   RadioRow(
                     screenWidth: screenWidth,
                     rowChildren: [
                       RadioField(
                         screenWidth: screenWidth,
-                        selectText: 'Seme germogliato: ',
+                        selectText: 'Ore di Luce/Buio Rispettate: ',
                         paddingLeft: false,
                         radioTrue: Radio(
                           value: true,
-                          groupValue: _sproutedSeed,
+                          groupValue: _hoursOfLightAndDarkRegular,
                           onChanged: (bool? value) {
                             if (value != null) {
                               setState(() {
-                                _sproutedSeed = value;
+                                _hoursOfLightAndDarkRegular = value;
                               });
                             }
                           },
                         ),
                         radioFalse: Radio(
                           value: false,
-                          groupValue: _sproutedSeed,
+                          groupValue: _hoursOfLightAndDarkRegular,
                           onChanged: (bool? value) {
                             if (value != null) {
                               setState(() {
-                                _sproutedSeed = value;
+                                _hoursOfLightAndDarkRegular = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      Container(),
+                    ],
+                  ),
+                  SectionLabel(text: 'Controlli sulla pianta'),
+                  RadioRow(
+                    screenWidth: screenWidth,
+                    rowChildren: [
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'SCROG e topping regolari: ',
+                        paddingLeft: false,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _Scrog,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _Scrog = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _Scrog,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _Scrog = value;
                               });
                             }
                           },
@@ -254,26 +353,26 @@ class _FormGerminationState extends State<FormGermination> {
                       ),
                       RadioField(
                         screenWidth: screenWidth,
-                        selectText: 'Problemi di crescita',
+                        selectText: 'Procedere alla Fioritura?',
                         paddingLeft: true,
                         radioTrue: Radio(
                           value: true,
-                          groupValue: _growthProblems,
+                          groupValue: _continuteToBlossom,
                           onChanged: (bool? value) {
                             if (value != null) {
                               setState(() {
-                                _growthProblems = value;
+                                _continuteToBlossom = value;
                               });
                             }
                           },
                         ),
                         radioFalse: Radio(
                           value: false,
-                          groupValue: _growthProblems,
+                          groupValue: _continuteToBlossom,
                           onChanged: (bool? value) {
                             if (value != null) {
                               setState(() {
-                                _growthProblems = value;
+                                _continuteToBlossom = value;
                               });
                             }
                           },
@@ -365,9 +464,9 @@ class _FormGerminationState extends State<FormGermination> {
                                     _tds.isNotEmpty &&
                                     _waterTemperature.isNotEmpty &&
                                     _image != null) {
-                                  await PdfApi.generateFormGermination(
+                                  await PdfApi.generateFormVegetative(
                                       path: widget.basePath +
-                                          '/Report Germinazione',
+                                          '/Report Vegetativa',
                                       lot: basename(widget.basePath),
                                       image: _image,
                                       params: [
@@ -377,12 +476,15 @@ class _FormGerminationState extends State<FormGermination> {
                                         _ec,
                                         _tds,
                                         _waterTemperature,
-                                        checkRadio(_visibleRoots),
+                                        checkRadio(_regularWaterLevel),
+                                        checkRadio(_regularFertilizerLevel),
+                                        checkRadio(_regularRootsGrowth),
                                         checkRadio(_damageSignals),
-                                        checkRadio(_sproutedSeed),
-                                        checkRadio(_growthProblems),
-                                        checkRadio(_signsOfMold),
+                                        checkRadio(_hoursOfLightAndDarkRegular),
+                                        checkRadio(_Scrog),
                                         checkRadio(_chlorosisAndFoliarProblems),
+                                        checkRadio(_continuteToBlossom),
+                                        checkRadio(_signsOfMold),
                                         _otherProblems
                                       ]);
                                   Navigator.pop(context, true);

@@ -13,15 +13,15 @@ import 'package:erbanova/widgets/ContainerField.dart';
 import 'package:erbanova/widgets/SectionLabel.dart';
 import 'package:erbanova/widgets/RadioField.dart';
 
-class FormVegetative extends StatefulWidget {
+class FormBlossom extends StatefulWidget {
   final String basePath;
-  const FormVegetative({required this.basePath});
+  const FormBlossom({required this.basePath});
 
   @override
-  _FormVegetativeState createState() => _FormVegetativeState();
+  _FormBlossomState createState() => _FormBlossomState();
 }
 
-class _FormVegetativeState extends State<FormVegetative> {
+class _FormBlossomState extends State<FormBlossom> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _temperature = '';
@@ -37,10 +37,18 @@ class _FormVegetativeState extends State<FormVegetative> {
   bool _regularRootsGrowth = false;
   bool _damageSignals = false;
   bool _hoursOfLightAndDarkRegular = false;
-  bool _Scrog = false;
   bool _chlorosisAndFoliarProblems = false;
-  bool _continuteToBlossom = false;
   bool _signsOfMold = false;
+  bool _florealPresence = false;
+  bool _malePlantPresence = false;
+  bool _signsOfErmafroditism = false;
+  bool _yellowishPistils = false;
+  bool _amberTricomes = false;
+  bool _continueToHarvest = false;
+
+  String _yellowishPistilsPercentage = '';
+  String _amberTricomesPercentage = '';
+  String _totalGrams = '';
 
   var _image;
 
@@ -103,6 +111,12 @@ class _FormVegetativeState extends State<FormVegetative> {
             case '_otherProblems':
               this._otherProblems = value;
               break;
+            case '_yellowishPistilsPercentage':
+              this._yellowishPistilsPercentage = value;
+              break;
+            case '_amberTricomesPercentage':
+              this._amberTricomesPercentage = value;
+              break;
             default:
               print('error');
           }
@@ -123,7 +137,7 @@ class _FormVegetativeState extends State<FormVegetative> {
 
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report vegetativa',
+          titleAppBar: 'Crea nuovo report fioritura',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),
@@ -133,7 +147,7 @@ class _FormVegetativeState extends State<FormVegetative> {
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.only(
-              left: 10.0, top: 24.0, right: 10.0, bottom: 0.0),
+              left: 10.0, top: 0.0, right: 10.0, bottom: 10.0),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -326,65 +340,6 @@ class _FormVegetativeState extends State<FormVegetative> {
                     rowChildren: [
                       RadioField(
                         screenWidth: screenWidth,
-                        selectText: 'SCROG e topping regolari: ',
-                        paddingLeft: false,
-                        radioTrue: Radio(
-                          value: true,
-                          groupValue: _Scrog,
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              setState(() {
-                                _Scrog = value;
-                              });
-                            }
-                          },
-                        ),
-                        radioFalse: Radio(
-                          value: false,
-                          groupValue: _Scrog,
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              setState(() {
-                                _Scrog = value;
-                              });
-                            }
-                          },
-                        ),
-                      ),
-                      RadioField(
-                        screenWidth: screenWidth,
-                        selectText: 'Procedere alla Fioritura?',
-                        paddingLeft: true,
-                        radioTrue: Radio(
-                          value: true,
-                          groupValue: _continuteToBlossom,
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              setState(() {
-                                _continuteToBlossom = value;
-                              });
-                            }
-                          },
-                        ),
-                        radioFalse: Radio(
-                          value: false,
-                          groupValue: _continuteToBlossom,
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              setState(() {
-                                _continuteToBlossom = value;
-                              });
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  RadioRow(
-                    screenWidth: screenWidth,
-                    rowChildren: [
-                      RadioField(
-                        screenWidth: screenWidth,
                         selectText: 'Clorosi e problemi fogliari: ',
                         paddingLeft: false,
                         radioTrue: Radio(
@@ -447,6 +402,210 @@ class _FormVegetativeState extends State<FormVegetative> {
                       _builderFormField('Altri problemi', '_otherProblems'),
                     ],
                   ),
+                  RadioRow(
+                    screenWidth: screenWidth,
+                    rowChildren: [
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Presenza di Fiori: ',
+                        paddingLeft: false,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _florealPresence,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _florealPresence = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _florealPresence,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _florealPresence = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Presenza di piante Maschili: ',
+                        paddingLeft: true,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _malePlantPresence,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _malePlantPresence = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _malePlantPresence,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _malePlantPresence = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                        child: RadioField(
+                          screenWidth: screenWidth,
+                          selectText: 'Segni di Ermafroditismo: ',
+                          paddingLeft: false,
+                          radioTrue: Radio(
+                            value: true,
+                            groupValue: _signsOfErmafroditism,
+                            onChanged: (bool? value) {
+                              if (value != null) {
+                                setState(() {
+                                  _signsOfErmafroditism = value;
+                                });
+                              }
+                            },
+                          ),
+                          radioFalse: Radio(
+                            value: false,
+                            groupValue: _signsOfErmafroditism,
+                            onChanged: (bool? value) {
+                              if (value != null) {
+                                setState(() {
+                                  _signsOfErmafroditism = value;
+                                });
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  RadioRow(
+                    screenWidth: screenWidth,
+                    rowChildren: [
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Presenza di Pistilli ingialliti: ',
+                        paddingLeft: false,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _yellowishPistils,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _yellowishPistils = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _yellowishPistils,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _yellowishPistils = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      _builderFormField('Percentuale indicativa',
+                          '_yellowishPistilsPercentage')
+                    ],
+                  ),
+                  RadioRow(
+                    screenWidth: screenWidth,
+                    rowChildren: [
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Presenza di Tricomi Ambrati: ',
+                        paddingLeft: false,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _amberTricomes,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _amberTricomes = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _amberTricomes,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _amberTricomes = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      _builderFormField(
+                          'Percentuale indicativa', '_amberTricomesPercentage')
+                    ],
+                  ),
+                  RadioRow(
+                    screenWidth: screenWidth,
+                    rowChildren: [
+                      RadioField(
+                        screenWidth: screenWidth,
+                        selectText: 'Procedere al raccolto? ',
+                        paddingLeft: false,
+                        radioTrue: Radio(
+                          value: true,
+                          groupValue: _continueToHarvest,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _continueToHarvest = value;
+                              });
+                            }
+                          },
+                        ),
+                        radioFalse: Radio(
+                          value: false,
+                          groupValue: _continueToHarvest,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _continueToHarvest = value;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(children: <Widget>[
+                    _builderFormField('Totale grammi raccolti', _totalGrams)
+                  ]),
                   Row(
                     children: [
                       Expanded(
@@ -463,10 +622,12 @@ class _FormVegetativeState extends State<FormVegetative> {
                                     _ec.isNotEmpty &&
                                     _tds.isNotEmpty &&
                                     _waterTemperature.isNotEmpty &&
+                                    _yellowishPistilsPercentage.isNotEmpty &&
+                                    _amberTricomesPercentage.isNotEmpty &&
                                     _image != null) {
-                                  await PdfApi.generateFormVegetative(
-                                      path: widget.basePath +
-                                          '/Report Vegetativa',
+                                  await PdfApi.generateFormBlossom(
+                                      path:
+                                          widget.basePath + '/Report Fioritura',
                                       lot: basename(widget.basePath),
                                       image: _image,
                                       params: [
@@ -481,11 +642,18 @@ class _FormVegetativeState extends State<FormVegetative> {
                                         checkRadio(_regularRootsGrowth),
                                         checkRadio(_damageSignals),
                                         checkRadio(_hoursOfLightAndDarkRegular),
-                                        checkRadio(_Scrog),
                                         checkRadio(_chlorosisAndFoliarProblems),
-                                        checkRadio(_continuteToBlossom),
                                         checkRadio(_signsOfMold),
-                                        _otherProblems
+                                        _otherProblems,
+                                        checkRadio(_florealPresence),
+                                        checkRadio(_malePlantPresence),
+                                        checkRadio(_signsOfErmafroditism),
+                                        checkRadio(_yellowishPistils),
+                                        _yellowishPistilsPercentage,
+                                        checkRadio(_amberTricomes),
+                                        _amberTricomesPercentage,
+                                        checkRadio(_continueToHarvest),
+                                        _totalGrams
                                       ]);
                                   Navigator.pop(context, true);
                                 } else {

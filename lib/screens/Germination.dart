@@ -5,7 +5,7 @@ import 'package:erbanova/widgets/AppBar.dart';
 import 'package:erbanova/widgets/ListFilesInDirectory.dart';
 
 // Screens
-import 'package:erbanova/screens/FormGermination.dart';
+import 'package:erbanova/screens/forms/FormGermination.dart';
 
 class Germination extends StatefulWidget {
   final basePath;
