@@ -262,16 +262,6 @@ class PdfApi {
     return saveDocument(path: path, name: '$title - $date.pdf', pdf: pdf);
   }
 
-  /*
-  _temperature,
-  _humidity,
-  checkRadio(_signsOfMold),
-  checkRadio(_airRecycling),
-  _flowerState,
-  _branchesDryness,
-  checkRadio(_completeDrying)
-  */
-
   static Future<File> generateFormDrying(
       {required String path,
       required String lot,

@@ -84,7 +84,7 @@ class _MenuState extends State<Menu> {
                         text: 'Fase di germinazione',
                         nextTab: Germination(basePath: _currentPath)),
                     MenuButton(
-                        text: 'Fase Vegetativa',
+                        text: 'Fase vegetativa',
                         nextTab: Vegetative(basePath: _currentPath)),
                   ],
                 ),
