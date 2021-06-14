@@ -123,7 +123,7 @@ class _FormVegetativeState extends State<FormVegetative> {
 
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report vegetativa',
+          titleAppBar: 'Crea report vegetativa',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),

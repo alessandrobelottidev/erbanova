@@ -101,7 +101,7 @@ class _FormDryingState extends State<FormDrying> {
 
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report germinazione',
+          titleAppBar: 'Crea report essicatura',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),
@@ -134,7 +134,7 @@ class _FormDryingState extends State<FormDrying> {
                         selectText: 'Segni di muffa',
                         paddingLeft: false,
                         radioTrue: Radio(
-                          value: false,
+                          value: true,
                           groupValue: _signsOfMold,
                           onChanged: (bool? value) {
                             if (value != null) {
@@ -145,7 +145,7 @@ class _FormDryingState extends State<FormDrying> {
                           },
                         ),
                         radioFalse: Radio(
-                          value: true,
+                          value: false,
                           groupValue: _signsOfMold,
                           onChanged: (bool? value) {
                             if (value != null) {
@@ -161,7 +161,7 @@ class _FormDryingState extends State<FormDrying> {
                           selectText: 'Ricircolo di aria rispettato',
                           paddingLeft: true,
                           radioTrue: Radio(
-                            value: false,
+                            value: true,
                             groupValue: _airRecycling,
                             onChanged: (bool? value) {
                               if (value != null) {
@@ -172,7 +172,7 @@ class _FormDryingState extends State<FormDrying> {
                             },
                           ),
                           radioFalse: Radio(
-                            value: true,
+                            value: false,
                             groupValue: _airRecycling,
                             onChanged: (bool? value) {
                               if (value != null) {
@@ -249,37 +249,10 @@ class _FormDryingState extends State<FormDrying> {
                     screenWidth: screenWidth,
                     rowChildren: <Widget>[
                       RadioField(
-                        selectText: 'Segni di muffa',
-                        paddingLeft: false,
-                        radioTrue: Radio(
-                          value: false,
-                          groupValue: _signsOfMold,
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              setState(() {
-                                _signsOfMold = value;
-                              });
-                            }
-                          },
-                        ),
-                        radioFalse: Radio(
-                          value: true,
-                          groupValue: _signsOfMold,
-                          onChanged: (bool? value) {
-                            if (value != null) {
-                              setState(() {
-                                _signsOfMold = value;
-                              });
-                            }
-                          },
-                        ),
-                        screenWidth: screenWidth,
-                      ),
-                      RadioField(
                           selectText: 'Essiccatura completa?',
                           paddingLeft: true,
                           radioTrue: Radio(
-                            value: false,
+                            value: true,
                             groupValue: _completeDrying,
                             onChanged: (bool? value) {
                               if (value != null) {
@@ -290,7 +263,7 @@ class _FormDryingState extends State<FormDrying> {
                             },
                           ),
                           radioFalse: Radio(
-                            value: true,
+                            value: false,
                             groupValue: _completeDrying,
                             onChanged: (bool? value) {
                               if (value != null) {

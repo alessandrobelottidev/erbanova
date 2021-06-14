@@ -137,7 +137,7 @@ class _FormBlossomState extends State<FormBlossom> {
 
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report fioritura',
+          titleAppBar: 'Crea report fioritura',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),

@@ -119,7 +119,7 @@ class _FormGerminationState extends State<FormGermination> {
 
     return Scaffold(
       appBar: ErbanovaAppBarAct(
-          titleAppBar: 'Crea nuovo report germinazione',
+          titleAppBar: 'Crea report germinazione',
           actions: IconButton(
             icon: Icon(Icons.camera_alt),
             onPressed: () => getImage(),
