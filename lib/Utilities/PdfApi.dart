@@ -315,6 +315,46 @@ class PdfApi {
     return saveDocument(path: path, name: '$title - $date.pdf', pdf: pdf);
   }
 
+  static Future<File> generateFormEndOfHarvest(
+      {required String path,
+      required String lot,
+      required List<String> params}) async {
+    final pdf = Document();
+    final String title = pdfName(path);
+    DateTime now = new DateTime.now();
+    String date = DateFormat('dd-MM-yyyy').format(now);
+
+    pdf.addPage(MultiPage(
+        build: (context) => [
+              Center(
+                child: Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Text('Lotto: ' + lot),
+                        Expanded(
+                            child: Center(
+                                child: Text(title + ' - Fine raccolto'))),
+                        Text('Data: ' + date),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Text('Tipo di produzione: ${params[0]}'),
+                    Text('Numero di Piante Iniziali: ${params[1]}'),
+                    Text('Numero di Piante Finali: ${params[2]}'),
+                    Text('Peso Totale (Non Essiccato): ${params[3]}'),
+                    Text('Peso Totale (Dopo Essiccatura): ${params[4]}'),
+                  ],
+                )),
+              ),
+            ]));
+
+    return saveDocument(path: path, name: '$title - $date.pdf', pdf: pdf);
+  }
+
   static Future<File> saveDocument({
     required String path,
     required String name,
