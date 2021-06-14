@@ -56,39 +56,51 @@ class _ListFilesInDirectoryState extends State<ListFilesInDirectory> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: fileList.length,
-      itemBuilder: (context, i) {
-        return Card(
-          child: ListTile(
-            onTap: () =>
-                OpenFile.open(fileList[i].path, type: "application/pdf"),
-            leading: Icon(
-              Icons.picture_as_pdf,
-              color: Colors.black54,
-              size: 28.0,
-            ),
-            title: Text(
-              basename(fileList[i].path),
-              style: const TextStyle(
-                fontSize: 22,
-              ),
-            ),
-            trailing: IconButton(
-              onPressed: () {
-                deleteFile(fileList[i]).then((int i) {
-                  setState(() {});
-                });
-              },
-              icon: Icon(
-                Icons.cancel,
-                size: 28.0,
-                color: Colors.red[400],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    print(widget.basePath);
+
+    return (fileList.length > 0)
+        ? ListView.builder(
+            itemCount: fileList.length,
+            itemBuilder: (context, i) {
+              return Card(
+                child: ListTile(
+                  onTap: () =>
+                      OpenFile.open(fileList[i].path, type: "application/pdf"),
+                  leading: Icon(
+                    Icons.picture_as_pdf,
+                    color: Colors.black54,
+                    size: 28.0,
+                  ),
+                  title: Text(
+                    basename(fileList[i].path),
+                    style: const TextStyle(
+                      fontSize: 22,
+                    ),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      deleteFile(fileList[i]).then((int i) {
+                        setState(() {});
+                      });
+                    },
+                    icon: Icon(
+                      Icons.cancel,
+                      size: 28.0,
+                      color: Colors.red[400],
+                    ),
+                  ),
+                ),
+              );
+            },
+          )
+        : Column(children: [
+            Row(children: [
+              Expanded(
+                  child: Text(
+                'Non ci sono ancora dati disponibili...',
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+              ))
+            ])
+          ]);
   }
 }
