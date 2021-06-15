@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:erbanova/widgets/ListCultivationLots.dart';
 
 // Utilities
-import 'package:erbanova/utilities/CreateFile.dart';
+import 'package:erbanova/utilities/CreateFolder.dart';
 
 class CultivationLot extends StatefulWidget {
   final basePath;
@@ -55,7 +55,7 @@ class _CultivationLotState extends State<CultivationLot> {
                 ),
               ),
               onPressed: () {
-                createFile(folderName);
+                createFolder(folderName);
                 Navigator.of(context).pop();
               },
             ),

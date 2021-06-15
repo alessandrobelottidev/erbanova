@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-void createFile(String fileName) async {
+void createFolder(String fileName) async {
   final Directory? _baseDir = await getExternalStorageDirectory();
 
   if (_baseDir != null) {
