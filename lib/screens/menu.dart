@@ -41,7 +41,9 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ErbanovaAppBarImage('assets/images/logo.png'),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: ErbanovaAppBarImage('assets/images/logo.png')),
       body: Container(
         color: Colors.lightGreen[200],
         child: Padding(
@@ -85,9 +87,13 @@ class _MenuState extends State<Menu> {
                                     this._currentLot = basename(value);
                                   }));
                         },
-                        child: Text(
-                          'Cambia lotto di coltivazione',
-                          textAlign: TextAlign.center,
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.only(top: 14.0, bottom: 14.0),
+                          child: Text(
+                            'Cambia lotto di coltivazione',
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(16.0),

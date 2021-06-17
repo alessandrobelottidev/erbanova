@@ -15,9 +15,12 @@ class MenuButton extends StatelessWidget {
         child: TextButton(
           onPressed: () => Navigator.push(
               context, MaterialPageRoute(builder: (context) => nextTab)),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 14.0, bottom: 14.0),
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+            ),
           ),
           style: TextButton.styleFrom(
               padding: const EdgeInsets.all(16.0),

@@ -10,9 +10,10 @@ class ErbanovaAppBarImage extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      toolbarHeight: 100.0,
       title: Image(
         image: AssetImage(imageTitle),
-        height: 74.0,
+        height: 100.0,
       ),
       centerTitle: true,
       backgroundColor: Colors.black,
